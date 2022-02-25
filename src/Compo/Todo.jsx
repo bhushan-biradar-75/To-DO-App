@@ -44,19 +44,19 @@ const Todo = () => {
     function checked(id) {
         console.log(id);
         setdata(
-          data.map((ele) => {
-            if (ele.id == id) {
-              if (ele.bollen == false) {
-                ele.bollen = true;
-              } else {
-                ele.bollen = false;
-              }
-            }
-            return ele;
-          })
+            data.map((ele) => {
+                if (ele.id == id) {
+                    if (ele.bollen == false) {
+                        ele.bollen = true;
+                    } else {
+                        ele.bollen = false;
+                    }
+                }
+                return ele;
+            })
         );
-      }
-    
+    }
+
 
     return (
 
@@ -65,7 +65,7 @@ const Todo = () => {
                 <div className="main">
                     <div
                         className="main-layout">
-                        <h1 style={{ backgroundColor: "black", color: "white" }} className='text-center mt-3'>To-Do-List</h1>
+                        <h1 style={{ backgroundColor: "#e86ed0", color: "white" }} className='text-center mt-3'><marquee>To-Do-List</marquee></h1>
                         <label className='mt-3'><b>Task Title*</b></label>
                         <input style={{ border: 'solid 1px black' }} value={data.task1} type="text" onChange={handleChanage} name='task1' placeholder='Enter task title' className='form-control mt-4' required />
 
@@ -84,7 +84,7 @@ const Todo = () => {
                                     <thead>
                                         <tr>
                                             {/* <th scope='col'>Sr No</th> */}
-                                            <th scope='col'>Checkbox</th>
+                                            <th scope='col'>Done</th>
                                             <th scope='col'>Task Title</th>
                                             <th scope='col'>Description</th>
                                             <th scope='col'>Due Date</th>
@@ -97,34 +97,33 @@ const Todo = () => {
                                         {
                                             data.map((d) => {
                                                 return (
+
                                                     <tr key={d.id}>
-                                                        <input type='checkbox' onChange={() => checked(d.id)} />
-                                                        <td style={{
+                                                        <input className='checkbox' type='checkbox' onChange={() => checked(d.id)} />
+                                                        <td className='task' style={{
                                                             textDecoration: d.bollen
                                                                 ? "line-through"
                                                                 : "none",
                                                         }} >{d.task1}</td>
-                                                        <td style={{
-                              textDecoration: d.bollen
-                                ? "line-through"
-                                : "none",
-                            }}>{d.description}</td>
+                                                        <td className='des' style={{
+                                                            textDecoration: d.bollen
+                                                                ? "line-through"
+                                                                : "none",
+                                                        }}> {d.description}</td>
                                                         {
-                                                            d.currentdate > d.duedate ? <td style={{ color: 'red', border: 'solid 2px red' }}>due date is passed</td> : <td style={{ color: 'green', border: 'solid 2px green' }}>due is not passed</td>
+                                                            d.currentdate > d.duedate ? <td style={{ color: 'red', border: 'solid 2px red' }}>DUE DATE PASS </td> : <td style={{ color: 'green', border: 'solid 2px green' }}>DUE DATE IS NOT PASS</td>
                                                         }
-                                                        <td>{d.Date}</td>
-                                                        <button onClick={() => deleteone(d.id)} style={{ backgroundColor: 'black', color: 'white' }} type='button' className='mx-1'>Delete</button>
+                                                        <td className='date'>{d.Date}</td>
+                                                        <button onClick={() => deleteone(d.id)} style={{ backgroundColor: '#134074', color: 'white' }} type='button' className='delete mx-1'>Delete</button>
                                                     </tr>
 
                                                 )
                                             })
                                         }
+
                                     </thead>
                                 </table>
                             </>
-
-
-
                         </div>
                     </div>
                 </div>
